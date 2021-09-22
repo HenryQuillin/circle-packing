@@ -12,11 +12,41 @@ context.scale(dpr, dpr);
 context.lineWidth = 2;
   
 var circles = [];
-var minRadius = 2;
+var minRadius = .1;
 var maxRadius = 100;
-var totalCircles = 500;
-var createCircleAttempts = 500;
+var totalCircles = 3000;
+var createCircleAttempts = 1000;
+
+color1 = "#5D737E"
+color2 = "#64B6AC"
+color3 = "#C0FDFB"
+color4 = "#DAFFEF"
+color5 = "#FCFFFD"
+
+water={ 
+  1: "#5D737E",
+  2:"#64B6AC",
+  3:"#C0FDFB",
+  4:"#DAFFEF",
+  5:"#FCFFFD"
+};
+light={ 
+  1: "#d73d6c",
+  2:"#d57276",
+  3:"#d6c2bc",
+  4:"#c0cccc",
+  5:"#65b2c6"
+};
  
+function getColor() {
+  // code = Math.floor(Math.random()*10000).toString(16);
+  // return color = "#" + code; 
+  num = Math.floor(Math.random() * 5) + 1
+
+  return light[num]
+
+  
+}
 function createAndDrawCircle() {
   
   var newCircle;
@@ -47,11 +77,12 @@ function createAndDrawCircle() {
       break;
     } 
   }
-
+  context.fillStyle = getColor();
   circles.push(newCircle);
   context.beginPath();
   context.arc(newCircle.x, newCircle.y, newCircle.radius, 0, 2*Math.PI);
   context.stroke(); 
+  context.fill()
 }
 
 function doesCircleHaveACollision(circle) {
